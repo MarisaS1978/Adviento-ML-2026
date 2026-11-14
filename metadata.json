@@ -1,0 +1,6 @@
+{
+  "name": "Adviento ML · Talento Tech",
+  "description": "Calendario de Adviento educativo e interactivo de Machine Learning con Python basado en el curso de VintaBytes para Talento Tech.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
