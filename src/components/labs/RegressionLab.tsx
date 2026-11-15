@@ -167,8 +167,8 @@ export const RegressionLab: React.FC<Props> = ({ labType }) => {
           </button>
 
           {showOutlier && (
-            <div className="flex items-center gap-3 min-w-[240px]">
-              <span className="text-xs font-medium text-slate-700 whitespace-nowrap">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto">
+              <span className="text-xs font-medium text-slate-700">
                 Valor real del outlier: <strong className="font-mono tabular-nums">{outlierY.toFixed(1)}</strong> (pred: 7.0)
               </span>
               <input
@@ -178,13 +178,13 @@ export const RegressionLab: React.FC<Props> = ({ labType }) => {
                 step={0.5}
                 value={outlierY}
                 onChange={(e) => setOutlierY(Number(e.target.value))}
-                className="w-32 accent-red-700"
+                className="w-full sm:w-32 accent-red-700"
               />
             </div>
           )}
         </div>
 
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div className="p-3 bg-white border border-slate-200 rounded-lg">
             <div className="text-xs text-slate-600">MAE (Lineal)</div>
             <div className="text-xl font-mono font-semibold tabular-nums text-slate-900 mt-1">{mae.toFixed(2)}</div>
@@ -220,11 +220,11 @@ export const RegressionLab: React.FC<Props> = ({ labType }) => {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="inline-flex rounded-lg bg-slate-100 p-1">
+        <div className="flex flex-wrap sm:inline-flex gap-1 rounded-lg bg-slate-100 p-1 w-full sm:w-auto">
           <button
             type="button"
             onClick={() => setTargetCol('rating')}
-            className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+            className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
               isRating ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -233,7 +233,7 @@ export const RegressionLab: React.FC<Props> = ({ labType }) => {
           <button
             type="button"
             onClick={() => setTargetCol('times_listed')}
-            className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+            className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
               !isRating ? 'bg-white text-emerald-800 shadow-sm' : 'text-slate-600 hover:text-slate-900'
             }`}
           >

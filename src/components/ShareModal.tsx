@@ -62,18 +62,18 @@ export const ShareModal: React.FC<ShareModalProps> = ({ completedCount, onClose 
             <label htmlFor="share-url-input" className="block text-xs font-medium text-slate-700">
               Enlace directo al calendario
             </label>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
                 id="share-url-input"
                 type="text"
                 readOnly
                 value={shareUrl}
-                className="flex-1 px-3 py-2 text-xs font-mono bg-slate-50 border border-slate-200 rounded-lg text-slate-800"
+                className="flex-1 min-w-0 px-3 py-2 text-xs font-mono bg-slate-50 border border-slate-200 rounded-lg text-slate-800"
               />
               <button
                 type="button"
                 onClick={() => copyText(shareUrl, 'url')}
-                className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium bg-slate-900 text-white rounded-lg hover:bg-slate-800 whitespace-nowrap shrink-0"
+                className="inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-medium bg-slate-900 text-white rounded-lg hover:bg-slate-800 whitespace-nowrap shrink-0"
               >
                 {copiedUrl ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>{copiedUrl ? 'Copiado' : 'Copiar link'}</span>

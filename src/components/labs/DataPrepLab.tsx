@@ -41,7 +41,7 @@ export const DataPrepLab: React.FC<Props> = ({ labType }) => {
     return (
       <div className="space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-200">
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <div>
               <span className="block text-xs font-medium text-slate-600 mb-1">Separador (sep)</span>
               <div className="inline-flex rounded-lg bg-slate-100 p-1">
@@ -147,7 +147,7 @@ export const DataPrepLab: React.FC<Props> = ({ labType }) => {
     return (
       <div className="space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-200">
-          <div className="inline-flex rounded-lg bg-slate-100 p-1">
+          <div className="flex flex-wrap sm:inline-flex gap-1 rounded-lg bg-slate-100 p-1 w-full sm:w-auto">
             {[
               { id: 'drop', label: 'Eliminar filas (dropna)' },
               { id: 'mean', label: 'Imputar Media' },
@@ -157,7 +157,7 @@ export const DataPrepLab: React.FC<Props> = ({ labType }) => {
                 key={opt.id}
                 type="button"
                 onClick={() => setImputeStrategy(opt.id as 'drop' | 'mean' | 'median')}
-                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+                className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
                   imputeStrategy === opt.id ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
@@ -168,7 +168,7 @@ export const DataPrepLab: React.FC<Props> = ({ labType }) => {
           <button
             type="button"
             onClick={() => setIncludeOutlier(!includeOutlier)}
-            className={`px-3 py-1.5 text-xs font-medium rounded-lg border transition-colors whitespace-nowrap ${
+            className={`px-3 py-1.5 text-xs font-medium rounded-lg border transition-colors ${
               includeOutlier
                 ? 'bg-red-50 border-red-200 text-red-800'
                 : 'bg-slate-50 border-slate-200 text-slate-700'
@@ -178,7 +178,7 @@ export const DataPrepLab: React.FC<Props> = ({ labType }) => {
           </button>
         </div>
 
-        <div className="grid grid-cols-3 gap-3 text-center">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
           <div className="p-3 bg-slate-50 rounded-lg border border-slate-200">
             <div className="text-xs text-slate-600">Filas útiles</div>
             <div className="text-lg font-semibold font-mono tabular-nums text-slate-900">
@@ -227,9 +227,9 @@ export const DataPrepLab: React.FC<Props> = ({ labType }) => {
               useAntiguedad ? 'bg-emerald-50 border-emerald-300 text-emerald-950' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
             }`}
           >
-            <div className="flex items-center justify-between text-xs font-semibold">
-              <span className="font-mono">+ antiguedad = 2026 - dt.year</span>
-              <span>{useAntiguedad ? 'Activa' : 'Agregar'}</span>
+            <div className="flex flex-wrap items-center justify-between gap-1.5 text-xs font-semibold">
+              <span className="font-mono break-all">+ antiguedad = 2026 - dt.year</span>
+              <span className="shrink-0">{useAntiguedad ? 'Activa' : 'Agregar'}</span>
             </div>
             <p className="text-xs text-slate-600 mt-1">Transforma fecha de texto en años desde el lanzamiento.</p>
           </button>
@@ -241,9 +241,9 @@ export const DataPrepLab: React.FC<Props> = ({ labType }) => {
               useRatioWishlist ? 'bg-emerald-50 border-emerald-300 text-emerald-950' : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
             }`}
           >
-            <div className="flex items-center justify-between text-xs font-semibold">
-              <span className="font-mono">+ ratio_deseo = wishlist / plays</span>
-              <span>{useRatioWishlist ? 'Activa' : 'Agregar'}</span>
+            <div className="flex flex-wrap items-center justify-between gap-1.5 text-xs font-semibold">
+              <span className="font-mono break-all">+ ratio_deseo = wishlist / plays</span>
+              <span className="shrink-0">{useRatioWishlist ? 'Activa' : 'Agregar'}</span>
             </div>
             <p className="text-xs text-slate-600 mt-1">Captura interés relativo independientemente del tamaño total.</p>
           </button>
@@ -272,11 +272,11 @@ export const DataPrepLab: React.FC<Props> = ({ labType }) => {
     const categories = ['RPG', 'Indie', 'Acción'];
     return (
       <div className="space-y-4">
-        <div className="inline-flex rounded-lg bg-slate-100 p-1">
+        <div className="flex flex-wrap sm:inline-flex gap-1 rounded-lg bg-slate-100 p-1 w-full sm:w-auto">
           <button
             type="button"
             onClick={() => setEncodingMode('label')}
-            className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+            className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
               encodingMode === 'label' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -285,7 +285,7 @@ export const DataPrepLab: React.FC<Props> = ({ labType }) => {
           <button
             type="button"
             onClick={() => setEncodingMode('onehot')}
-            className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+            className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
               encodingMode === 'onehot' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -358,7 +358,7 @@ export const DataPrepLab: React.FC<Props> = ({ labType }) => {
 
     return (
       <div className="space-y-4">
-        <div className="inline-flex rounded-lg bg-slate-100 p-1">
+        <div className="flex flex-wrap sm:inline-flex gap-1 rounded-lg bg-slate-100 p-1 w-full sm:w-auto">
           {[
             { id: 'raw', label: 'Datos crudos' },
             { id: 'minmax', label: 'MinMaxScaler [0, 1]' },
@@ -368,7 +368,7 @@ export const DataPrepLab: React.FC<Props> = ({ labType }) => {
               key={m.id}
               type="button"
               onClick={() => setScalerMode(m.id as 'raw' | 'minmax' | 'standard')}
-              className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+              className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
                 scalerMode === m.id ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
               }`}
             >
@@ -435,11 +435,11 @@ export const DataPrepLab: React.FC<Props> = ({ labType }) => {
           </div>
         </div>
 
-        <div className="inline-flex rounded-lg bg-slate-100 p-1">
+        <div className="flex flex-wrap sm:inline-flex gap-1 rounded-lg bg-slate-100 p-1 w-full">
           <button
             type="button"
             onClick={() => setLeakageMode('leaky')}
-            className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+            className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
               leakageMode === 'leaky' ? 'bg-white text-red-700 shadow-sm' : 'text-slate-600'
             }`}
           >
@@ -448,7 +448,7 @@ export const DataPrepLab: React.FC<Props> = ({ labType }) => {
           <button
             type="button"
             onClick={() => setLeakageMode('clean')}
-            className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+            className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
               leakageMode === 'clean' ? 'bg-white text-emerald-700 shadow-sm' : 'text-slate-600'
             }`}
           >

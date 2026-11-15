@@ -201,10 +201,10 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-slate-900">
+    <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-slate-900 overflow-x-hidden">
       {/* Top Navigation Bar: Strict 3-zone contract */}
       <header className="sticky top-0 z-30 bg-[#F8FAFC]/95 backdrop-blur-sm border-b border-slate-200">
-        <div className="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between gap-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-4 sm:gap-8">
           {/* Zone 1: Single text element wordmark */}
           <a
             href="#inicio"
@@ -251,9 +251,9 @@ export default function App() {
 
       <main className="flex-1 bg-gradient-to-b from-emerald-50/45 via-[#F8FAFC] to-rose-50/25">
         {/* Hero Split Section */}
-        <section id="inicio" className="max-w-6xl mx-auto px-6 pt-10 pb-8">
+        <section id="inicio" className="max-w-6xl mx-auto px-4 sm:px-6 pt-8 sm:pt-10 pb-8">
           <div className="grid lg:grid-cols-12 gap-8 items-stretch">
-            <div className="lg:col-span-6 flex flex-col justify-between py-2 space-y-6">
+            <div className="lg:col-span-6 min-w-0 flex flex-col justify-between py-2 space-y-6">
               <div className="space-y-4">
                 <div className="text-xs font-medium text-emerald-800 flex flex-wrap items-center gap-2">
                   <span>Talento Tech · CABA</span>
@@ -303,7 +303,7 @@ export default function App() {
               </div>
             </div>
 
-            <div className="lg:col-span-6">
+            <div className="lg:col-span-6 min-w-0">
               <div className="h-full min-h-[260px] rounded-xl overflow-hidden border border-slate-200 bg-slate-100">
                 {!heroImgError ? (
                   <img
@@ -347,7 +347,7 @@ export default function App() {
         </section>
 
         {/* Calendar Grid Section */}
-        <section id="calendario" className="max-w-6xl mx-auto px-6 py-10 border-t border-slate-200">
+        <section id="calendario" className="max-w-6xl mx-auto px-4 sm:px-6 py-10 border-t border-slate-200">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
             <div>
               <h2
@@ -362,15 +362,15 @@ export default function App() {
             </div>
 
             {/* Mode Switcher */}
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="inline-flex rounded-lg bg-slate-200/70 p-1">
+            <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+              <div className="flex flex-wrap sm:inline-flex gap-1 rounded-lg bg-slate-200/70 p-1 w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={() => {
                     setCalendarMode('free');
                     setLockedNoticeDay(null);
                   }}
-                  className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+                  className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
                     calendarMode === 'free' ? 'bg-white text-slate-950 shadow-xs' : 'text-slate-700 hover:text-slate-950'
                   }`}
                 >
@@ -379,7 +379,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => setCalendarMode('advent')}
-                  className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+                  className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
                     calendarMode === 'advent' ? 'bg-white text-slate-950 shadow-xs' : 'text-slate-700 hover:text-slate-950'
                   }`}
                 >
@@ -391,7 +391,7 @@ export default function App() {
 
           {/* Interactive Filters & Optional December Day Simulator */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-            <div className="flex flex-wrap items-center gap-1 p-1 bg-slate-100 rounded-lg">
+            <div className="flex flex-wrap items-center gap-1 p-1 bg-slate-100 rounded-lg w-full md:w-auto">
               {[
                 { id: 'all', label: 'Todos (24)' },
                 { id: 'w1', label: 'Semana 1' },
@@ -404,7 +404,7 @@ export default function App() {
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveFilter(tab.id as FilterTab)}
-                  className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+                  className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
                     activeFilter === tab.id
                       ? 'bg-white text-slate-950 shadow-xs'
                       : 'text-slate-600 hover:text-slate-950'
@@ -416,7 +416,7 @@ export default function App() {
             </div>
 
             {calendarMode === 'advent' && (
-              <div className="flex items-center gap-3 bg-white border border-slate-200 rounded-lg px-3 py-2">
+              <div className="flex items-center justify-between sm:justify-start gap-3 bg-white border border-slate-200 rounded-lg px-3 py-2 w-full md:w-auto">
                 <label htmlFor="dec-sim-range" className="text-xs font-medium text-slate-700 whitespace-nowrap">
                   Día de diciembre: <strong className="font-mono tabular-nums">{simulatedDecDay}</strong>
                 </label>
@@ -427,7 +427,7 @@ export default function App() {
                   max={24}
                   value={simulatedDecDay}
                   onChange={(e) => setSimulatedDecDay(Number(e.target.value))}
-                  className="w-28 accent-red-700"
+                  className="w-28 sm:w-32 accent-red-700"
                 />
               </div>
             )}
@@ -534,7 +534,7 @@ export default function App() {
         </section>
 
         {/* Course Path Overview */}
-        <section id="ruta" className="max-w-6xl mx-auto px-6 py-10 border-t border-slate-200">
+        <section id="ruta" className="max-w-6xl mx-auto px-4 sm:px-6 py-10 border-t border-slate-200">
           <div className="mb-6">
             <h2
               className="text-2xl font-semibold text-slate-950 tracking-tight"
@@ -583,7 +583,7 @@ export default function App() {
         </section>
 
         {/* Progress Tracker */}
-        <section id="progreso" className="max-w-6xl mx-auto px-6 py-10 border-t border-slate-200">
+        <section id="progreso" className="max-w-6xl mx-auto px-4 sm:px-6 py-10 border-t border-slate-200">
           <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-6">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>

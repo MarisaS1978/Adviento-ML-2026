@@ -209,11 +209,11 @@ export const ClassificationLab: React.FC<Props> = ({ labType }) => {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-3">
-        <div className="inline-flex rounded-lg bg-slate-100 p-1">
+        <div className="flex flex-wrap sm:inline-flex gap-1 rounded-lg bg-slate-100 p-1 w-full sm:w-auto">
           <button
             type="button"
             onClick={() => setImbalanced(false)}
-            className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+            className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
               !imbalanced ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600'
             }`}
           >
@@ -222,7 +222,7 @@ export const ClassificationLab: React.FC<Props> = ({ labType }) => {
           <button
             type="button"
             onClick={() => setImbalanced(true)}
-            className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+            className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
               imbalanced ? 'bg-white text-red-800 shadow-sm' : 'text-slate-600'
             }`}
           >
@@ -233,7 +233,7 @@ export const ClassificationLab: React.FC<Props> = ({ labType }) => {
         <button
           type="button"
           onClick={() => setPredictMajorityOnly(!predictMajorityOnly)}
-          className="px-3 py-1.5 text-xs font-medium rounded-lg border border-slate-300 bg-white text-slate-800 hover:bg-slate-50"
+          className="w-full sm:w-auto px-3 py-1.5 text-xs font-medium rounded-lg border border-slate-300 bg-white text-slate-800 hover:bg-slate-50"
         >
           {predictMajorityOnly ? 'Modelo ingenuo: predice todo "0"' : 'Modelo real (detecta clase 1)'}
         </button>

@@ -172,11 +172,11 @@ export const ModelsAndClusteringLab: React.FC<Props> = ({ labType }) => {
 
     return (
       <div className="space-y-4">
-        <div className="inline-flex rounded-lg bg-slate-100 p-1">
+        <div className="flex flex-wrap sm:inline-flex gap-1 rounded-lg bg-slate-100 p-1 w-full sm:w-auto">
           <button
             type="button"
             onClick={() => setScaled(false)}
-            className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+            className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
               !scaled ? 'bg-white text-red-800 shadow-sm' : 'text-slate-600'
             }`}
           >
@@ -185,7 +185,7 @@ export const ModelsAndClusteringLab: React.FC<Props> = ({ labType }) => {
           <button
             type="button"
             onClick={() => setScaled(true)}
-            className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+            className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
               scaled ? 'bg-white text-emerald-800 shadow-sm' : 'text-slate-600'
             }`}
           >
@@ -243,7 +243,7 @@ export const ModelsAndClusteringLab: React.FC<Props> = ({ labType }) => {
           />
         </div>
 
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div className="p-3 bg-white border border-slate-200 rounded-lg">
             <div className="text-xs text-slate-600">Accuracy Train</div>
             <div className="text-xl font-mono font-semibold tabular-nums text-slate-900 mt-1">
@@ -421,11 +421,11 @@ export const ModelsAndClusteringLab: React.FC<Props> = ({ labType }) => {
   const isPenguins = realDataset === 'penguins';
   return (
     <div className="space-y-4">
-      <div className="inline-flex rounded-lg bg-slate-100 p-1">
+      <div className="flex flex-wrap sm:inline-flex gap-1 rounded-lg bg-slate-100 p-1 w-full sm:w-auto">
         <button
           type="button"
           onClick={() => setRealDataset('penguins')}
-          className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+          className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
             isPenguins ? 'bg-white text-emerald-800 shadow-sm' : 'text-slate-600'
           }`}
         >
@@ -434,7 +434,7 @@ export const ModelsAndClusteringLab: React.FC<Props> = ({ labType }) => {
         <button
           type="button"
           onClick={() => setRealDataset('consumers')}
-          className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+          className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
             !isPenguins ? 'bg-white text-amber-800 shadow-sm' : 'text-slate-600'
           }`}
         >

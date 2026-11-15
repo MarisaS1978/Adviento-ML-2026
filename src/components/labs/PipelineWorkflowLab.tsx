@@ -63,7 +63,7 @@ export const PipelineWorkflowLab: React.FC<Props> = ({ labType }) => {
                 key={s.id}
                 type="button"
                 onClick={() => toggleStep(s.id)}
-                className={`px-3 py-2 text-xs font-medium rounded-lg border transition-colors ${
+                className={`px-3 py-2 text-xs font-medium text-left rounded-lg border transition-colors ${
                   idx !== -1
                     ? 'bg-emerald-50 border-emerald-300 text-emerald-950'
                     : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
@@ -76,11 +76,11 @@ export const PipelineWorkflowLab: React.FC<Props> = ({ labType }) => {
           })}
         </div>
 
-        <div className="p-3 rounded-lg border border-slate-200 bg-slate-50 flex items-center justify-between text-xs">
+        <div className="p-3 rounded-lg border border-slate-200 bg-slate-50 flex flex-wrap items-center justify-between gap-2 text-xs">
           <div className="flex items-center gap-2">
             {isExact ? (
               <>
-                <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+                <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-700" />
                 <span className="font-semibold text-emerald-900">Orden impecable: el split ocurre antes de ajustar transformadores.</span>
               </>
             ) : (
@@ -92,7 +92,7 @@ export const PipelineWorkflowLab: React.FC<Props> = ({ labType }) => {
           <button
             type="button"
             onClick={() => setSelectedOrder([])}
-            className="text-slate-600 hover:text-slate-900 underline"
+            className="text-slate-600 hover:text-slate-900 underline shrink-0"
           >
             Limpiar
           </button>
@@ -104,11 +104,11 @@ export const PipelineWorkflowLab: React.FC<Props> = ({ labType }) => {
   if (labType === 'sklearn-pipeline') {
     return (
       <div className="space-y-4">
-        <div className="inline-flex rounded-lg bg-slate-100 p-1">
+        <div className="flex flex-wrap sm:inline-flex gap-1 rounded-lg bg-slate-100 p-1 w-full sm:w-auto">
           <button
             type="button"
             onClick={() => setUsePipeline(false)}
-            className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+            className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
               !usePipeline ? 'bg-white text-red-800 shadow-sm' : 'text-slate-600'
             }`}
           >
@@ -117,7 +117,7 @@ export const PipelineWorkflowLab: React.FC<Props> = ({ labType }) => {
           <button
             type="button"
             onClick={() => setUsePipeline(true)}
-            className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+            className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
               usePipeline ? 'bg-white text-emerald-800 shadow-sm' : 'text-slate-600'
             }`}
           >
@@ -200,7 +200,7 @@ export const PipelineWorkflowLab: React.FC<Props> = ({ labType }) => {
           </table>
         </div>
 
-        <div className="text-xs text-slate-700 bg-slate-50 p-3 rounded-lg border border-slate-200 flex justify-between items-center">
+        <div className="text-xs text-slate-700 bg-slate-50 p-3 rounded-lg border border-slate-200 flex flex-wrap justify-between items-center gap-2">
           <span>
             Combinación seleccionada: <strong className="font-mono">max_depth={selectedCell.depth}, n_estimators={selectedCell.est}</strong>
           </span>
@@ -213,11 +213,11 @@ export const PipelineWorkflowLab: React.FC<Props> = ({ labType }) => {
   if (labType === 'joblib-serialization') {
     return (
       <div className="space-y-4">
-        <div className="inline-flex rounded-lg bg-slate-100 p-1">
+        <div className="flex flex-wrap sm:inline-flex gap-1 rounded-lg bg-slate-100 p-1 w-full sm:w-auto">
           <button
             type="button"
             onClick={() => setSavedScope('estimator')}
-            className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+            className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
               savedScope === 'estimator' ? 'bg-white text-red-800 shadow-sm' : 'text-slate-600'
             }`}
           >
@@ -226,7 +226,7 @@ export const PipelineWorkflowLab: React.FC<Props> = ({ labType }) => {
           <button
             type="button"
             onClick={() => setSavedScope('pipeline')}
-            className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+            className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
               savedScope === 'pipeline' ? 'bg-white text-emerald-800 shadow-sm' : 'text-slate-600'
             }`}
           >
@@ -263,7 +263,7 @@ export const PipelineWorkflowLab: React.FC<Props> = ({ labType }) => {
 
     return (
       <div className="space-y-4">
-        <div className="inline-flex rounded-lg bg-slate-100 p-1">
+        <div className="flex flex-wrap sm:inline-flex gap-1 rounded-lg bg-slate-100 p-1 w-full sm:w-auto">
           {[
             { id: 'recall', label: 'Priorizar Recall' },
             { id: 'precision', label: 'Priorizar Precision' },
@@ -273,7 +273,7 @@ export const PipelineWorkflowLab: React.FC<Props> = ({ labType }) => {
               key={opt.id}
               type="button"
               onClick={() => setPriority(opt.id as 'recall' | 'precision' | 'explain')}
-              className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+              className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-center ${
                 priority === opt.id ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600'
               }`}
             >
