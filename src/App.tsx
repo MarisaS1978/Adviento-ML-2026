@@ -4,6 +4,7 @@ import {
   CheckCircle2,
   Lock,
   ArrowUpRight,
+  ArrowUp,
   Share2,
   RotateCcw,
   BookOpen,
@@ -103,6 +104,16 @@ export default function App() {
   const [showShareModal, setShowShareModal] = useState(false);
   const [heroImgError, setHeroImgError] = useState(false);
   const [lockedNoticeDay, setLockedNoticeDay] = useState<number | null>(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setShowScrollTop(window.scrollY > 320);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     try {
@@ -741,6 +752,20 @@ export default function App() {
           completedCount={completedDays.length}
           onClose={() => setShowShareModal(false)}
         />
+      )}
+      {showScrollTop && !activeDay && !showShareModal && (
+        <button
+          type="button"
+          onClick={() => {
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+          }}
+          aria-label="Volver al menú superior"
+          className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2.5 text-xs font-medium bg-slate-900 text-white border border-slate-700 rounded-xl shadow-lg hover:bg-emerald-700 hover:border-emerald-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 whitespace-nowrap"
+        >
+          <ArrowUp className="w-4 h-4 shrink-0" />
+          <span>Volver arriba</span>
+        </button>
       )}
     </div>
   );
