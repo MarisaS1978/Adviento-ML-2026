@@ -65,6 +65,7 @@ const WEEK_THEMES: Record<
 };
 
 const STORAGE_KEY = 'adviento_ml_completed_v1';
+const VINTABYTES_REPO_URL = 'https://github.com/VintaBytes/Ciencia-de-datos';
 const REPO_URL =
   'https://github.com/VintaBytes/Ciencia-de-datos/blob/main/cursos/machine-learning-python2/README.md';
 
@@ -256,9 +257,9 @@ export default function App() {
             <div className="lg:col-span-6 min-w-0 flex flex-col justify-between py-2 space-y-6">
               <div className="space-y-4">
                 <div className="text-xs font-medium text-emerald-800 flex flex-wrap items-center gap-2">
-                  <span>Talento Tech · CABA</span>
+                  <span>Talento Tech · Comisión 26241</span>
                   <span aria-hidden="true">·</span>
-                  <span>Basado en VintaBytes</span>
+                  <span>VintaBytes (Prof. Ariel Palazzesi)</span>
                   <span aria-hidden="true">·</span>
                   <span>Machine Learning con Python</span>
                 </div>
@@ -271,7 +272,16 @@ export default function App() {
                 </h1>
 
                 <p className="text-base text-slate-600 leading-relaxed max-w-xl">
-                  Un calendario educativo diseñado para practicar en equipo cada cuaderno del curso: desde la carga con Pandas y la prevención de Data Leakage hasta K-Means, Random Forest, Pipelines y el proyecto clínico final.
+                  Un calendario educativo diseñado para la Comisión 26241 sobre los cuadernos de{' '}
+                  <a
+                    href={VINTABYTES_REPO_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-emerald-800 hover:underline"
+                  >
+                    VintaBytes
+                  </a>{' '}
+                  del profesor Ariel Palazzesi: desde la carga con Pandas y la prevención de Data Leakage hasta K-Means, Random Forest, Pipelines y el proyecto clínico final.
                 </p>
               </div>
 
@@ -292,12 +302,12 @@ export default function App() {
                 </button>
 
                 <a
-                  href={REPO_URL}
+                  href={VINTABYTES_REPO_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-700 hover:text-slate-950 underline underline-offset-4 whitespace-nowrap"
                 >
-                  <span>Cuadernos en GitHub</span>
+                  <span>Repositorio VintaBytes</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </a>
               </div>
@@ -633,32 +643,85 @@ export default function App() {
             </div>
           </div>
         </section>
+        {/* Acknowledgments Section */}
+        <section id="agradecimientos" className="max-w-6xl mx-auto px-4 sm:px-6 pb-12">
+          <div className="bg-white border border-rose-200 rounded-xl overflow-hidden">
+            <div className="h-1.5 w-full bg-gradient-to-r from-emerald-600 via-rose-600 to-amber-600" />
+            <div className="p-6 sm:p-8 grid lg:grid-cols-3 gap-6 items-start">
+              <div className="lg:col-span-2 space-y-3 min-w-0">
+                <div className="text-xs font-medium text-rose-800 flex flex-wrap items-center gap-2">
+                  <span>Comisión 26241</span>
+                  <span aria-hidden="true">·</span>
+                  <span>Talento Tech</span>
+                  <span aria-hidden="true">·</span>
+                  <span>Agradecimientos</span>
+                </div>
+                <h2
+                  className="text-xl sm:text-2xl font-semibold text-slate-950 tracking-tight text-balance"
+                  style={{ fontFamily: 'var(--font-display)' }}
+                >
+                  Gracias por compartir este recorrido de aprendizaje
+                </h2>
+                <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                  Un agradecimiento especial al profesor <strong className="font-semibold text-slate-950">Ariel Palazzesi</strong>, creador de VintaBytes, por su enorme generosidad, claridad docente y por poner a disposición estos cuadernos abiertos; a nuestra tutora <strong className="font-semibold text-slate-950">Luciana</strong>, por su acompañamiento constante, paciencia y guía en cada clase; y a todos mis <strong className="font-semibold text-slate-950">compañeros y compañeras de la Comisión 26241</strong> por el entusiasmo, las preguntas y el aprendizaje compartido semana a semana.
+                </p>
+              </div>
+
+              <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 sm:p-5 space-y-3 min-w-0">
+                <div className="text-xs font-medium text-slate-600">Material oficial de VintaBytes</div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Explora todos los cuadernos, datasets y clases creados por Ariel Palazzesi directamente en GitHub.
+                </p>
+                <div className="flex flex-col gap-2 pt-1">
+                  <a
+                    href={VINTABYTES_REPO_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-medium bg-emerald-700 text-white rounded-lg hover:bg-emerald-800 transition-colors"
+                  >
+                    <span>Repositorio VintaBytes</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
+                  </a>
+                  <a
+                    href={REPO_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-medium bg-white border border-slate-200 text-slate-800 rounded-lg hover:bg-slate-100 transition-colors"
+                  >
+                    <span>Índice Machine Learning Python</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* Quiet Editorial Footer */}
       <footer className="border-t border-slate-200 bg-white">
-        <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
-          <div className="flex items-center gap-2">
-            <BookOpen className="w-4 h-4 text-emerald-700" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-slate-600">
+          <div className="flex items-start sm:items-center gap-2">
+            <BookOpen className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5 sm:mt-0" />
             <span>
-              Inspirado en los cuadernos de{' '}
+              Basado en el repositorio{' '}
               <a
-                href={REPO_URL}
+                href={VINTABYTES_REPO_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium text-slate-900 hover:underline"
               >
                 VintaBytes · Ciencia de Datos con Python
               </a>{' '}
-              (Ariel Palazzesi · Talento Tech).
+              del profesor Ariel Palazzesi · Comisión 26241 (Talento Tech).
             </span>
           </div>
           <button
             type="button"
             onClick={() => setShowShareModal(true)}
-            className="font-medium text-emerald-700 hover:text-emerald-800 hover:underline"
+            className="font-medium text-emerald-700 hover:text-emerald-800 hover:underline shrink-0"
           >
-            Compartir calendario con compañeros
+            Compartir con la Comisión 26241
           </button>
         </div>
       </footer>

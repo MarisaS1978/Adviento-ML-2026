@@ -11,7 +11,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ completedCount, onClose 
   const [copiedMsg, setCopiedMsg] = useState(false);
 
   const shareUrl = typeof window !== 'undefined' ? window.location.origin : '';
-  const groupMessage = `Hola equipo! Armé este Calendario de Adviento interactivo de Machine Learning con 24 mini-laboratorios y retos basados en los cuadernos de VintaBytes (Talento Tech). Llevo ${completedCount}/24 días completados. Pruébenlo acá: ${shareUrl}`;
+  const groupMessage = `Hola Comisión 26241! Armé este Calendario de Adviento interactivo de Machine Learning con 24 mini-laboratorios y retos basados en los cuadernos de VintaBytes del profe Ariel Palazzesi (Talento Tech). Llevo ${completedCount}/24 días completados. Pruébenlo acá: ${shareUrl}`;
 
   const copyText = async (text: string, which: 'url' | 'msg') => {
     try {
