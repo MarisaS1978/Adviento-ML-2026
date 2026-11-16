@@ -13,6 +13,7 @@ import {
 import { ADVENT_DAYS, AdventDay, WEEK_NAMES, WeekNumber } from './data/adventDays';
 import { DayModal } from './components/DayModal';
 import { ShareModal } from './components/ShareModal';
+import { SecuritySection } from './components/SecuritySection';
 import heroIllustration from './assets/images/hero_ml_advent_1794699924347.jpg';
 
 const WEEK_THEMES: Record<
@@ -78,8 +79,17 @@ export default function App() {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed)) return parsed;
+        const parsed: unknown = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          const sanitized = Array.from(
+            new Set(
+              parsed.filter(
+                (n): n is number => typeof n === 'number' && Number.isInteger(n) && n >= 1 && n <= 24
+              )
+            )
+          ).sort((a, b) => a - b);
+          return sanitized;
+        }
       }
     } catch {
       // Ignore storage errors
@@ -97,7 +107,7 @@ export default function App() {
     if (typeof window !== 'undefined') {
       const param = new URLSearchParams(window.location.search).get('dia');
       const parsed = param ? Number(param) : NaN;
-      if (parsed >= 1 && parsed <= 24) return parsed;
+      if (Number.isInteger(parsed) && parsed >= 1 && parsed <= 24) return parsed;
     }
     return null;
   });
@@ -170,6 +180,15 @@ export default function App() {
       return prev.filter((d) => d !== dayNum);
     });
   };
+
+  const handleClearLocalData = useCallback(() => {
+    setCompletedDays([]);
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      // Ignore storage errors
+    }
+  }, []);
 
   const nextRecommendedDay = useMemo(() => {
     const firstPending = ADVENT_DAYS.find((d) => !completedDays.includes(d.day));
@@ -707,6 +726,10 @@ export default function App() {
             </div>
           </div>
         </section>
+        <SecuritySection
+          completedDays={completedDays}
+          onClearLocalData={handleClearLocalData}
+        />
       </main>
 
       {/* Quiet Editorial Footer */}
@@ -727,13 +750,18 @@ export default function App() {
               del profesor Ariel Palazzesi · Comisión 26241 (Talento Tech).
             </span>
           </div>
-          <button
-            type="button"
-            onClick={() => setShowShareModal(true)}
-            className="font-medium text-emerald-700 hover:text-emerald-800 hover:underline shrink-0"
-          >
-            Compartir con la Comisión 26241
-          </button>
+          <div className="flex flex-wrap items-center gap-4 shrink-0">
+            <a href="#seguridad" className="text-slate-600 hover:text-slate-950 hover:underline">
+              Seguridad SOC 2 / ISO 27001
+            </a>
+            <button
+              type="button"
+              onClick={() => setShowShareModal(true)}
+              className="font-medium text-emerald-700 hover:text-emerald-800 hover:underline"
+            >
+              Compartir con la Comisión 26241
+            </button>
+          </div>
         </div>
       </footer>
 
