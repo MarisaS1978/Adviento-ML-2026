@@ -20,6 +20,7 @@ interface DayModalProps {
   day: AdventDay;
   isCompleted: boolean;
   onToggleComplete: (dayNum: number, completed: boolean) => void;
+  onCelebrate?: () => void;
   onClose: () => void;
   onNavigate: (dayNum: number) => void;
 }
@@ -36,6 +37,7 @@ export const DayModal: React.FC<DayModalProps> = ({
   day,
   isCompleted,
   onToggleComplete,
+  onCelebrate,
   onClose,
   onNavigate,
 }) => {
@@ -57,8 +59,12 @@ export const DayModal: React.FC<DayModalProps> = ({
 
   const handleSelectOption = (idx: number) => {
     setSelectedOption(idx);
-    if (idx === day.quiz.correctIndex && !isCompleted) {
-      onToggleComplete(day.day, true);
+    if (idx === day.quiz.correctIndex) {
+      if (!isCompleted) {
+        onToggleComplete(day.day, true);
+      } else {
+        onCelebrate?.();
+      }
     }
   };
 

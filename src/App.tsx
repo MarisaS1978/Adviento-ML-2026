@@ -133,10 +133,21 @@ export default function App() {
     }
   }, [completedDays]);
 
+  const confettiRef = React.useRef<ReturnType<typeof confetti.create> | null>(null);
+
   const triggerCelebrationConfetti = useCallback((isGrandFinale: boolean) => {
+    if (typeof window === 'undefined') return;
+    if (!confettiRef.current) {
+      confettiRef.current = confetti.create(undefined, {
+        resize: true,
+        useWorker: false,
+      });
+    }
+
+    const fire = confettiRef.current;
     const colors = ['#047857', '#E11D48', '#D97706', '#0284C7', '#10B981', '#F59E0B'];
 
-    confetti({
+    fire({
       particleCount: isGrandFinale ? 110 : 75,
       spread: isGrandFinale ? 95 : 70,
       origin: { y: 0.62 },
@@ -146,8 +157,8 @@ export default function App() {
     });
 
     if (isGrandFinale) {
-      setTimeout(() => {
-        confetti({
+      window.setTimeout(() => {
+        fire({
           particleCount: 65,
           angle: 60,
           spread: 60,
@@ -156,7 +167,7 @@ export default function App() {
           zIndex: 100,
           disableForReducedMotion: true,
         });
-        confetti({
+        fire({
           particleCount: 65,
           angle: 120,
           spread: 60,
@@ -169,17 +180,25 @@ export default function App() {
     }
   }, []);
 
-  const handleToggleComplete = (dayNum: number, completed: boolean) => {
-    setCompletedDays((prev) => {
+  const handleToggleComplete = useCallback(
+    (dayNum: number, completed: boolean) => {
       if (completed) {
-        if (prev.includes(dayNum)) return prev;
-        const next = [...prev, dayNum].sort((a, b) => a - b);
+        const alreadyCompleted = completedDays.includes(dayNum);
+        const next = alreadyCompleted
+          ? completedDays
+          : [...completedDays, dayNum].sort((a, b) => a - b);
+
+        if (!alreadyCompleted) {
+          setCompletedDays(next);
+        }
         triggerCelebrationConfetti(next.length === ADVENT_DAYS.length);
-        return next;
+        return;
       }
-      return prev.filter((d) => d !== dayNum);
-    });
-  };
+
+      setCompletedDays((prev) => prev.filter((d) => d !== dayNum));
+    },
+    [completedDays, triggerCelebrationConfetti]
+  );
 
   const handleClearLocalData = useCallback(() => {
     setCompletedDays([]);
@@ -825,6 +844,9 @@ export default function App() {
           day={activeDay}
           isCompleted={completedDays.includes(activeDay.day)}
           onToggleComplete={handleToggleComplete}
+          onCelebrate={() =>
+            triggerCelebrationConfetti(completedDays.length === ADVENT_DAYS.length)
+          }
           onClose={() => setActiveDayNum(null)}
           onNavigate={(nextDay) => setActiveDayNum(nextDay)}
         />
