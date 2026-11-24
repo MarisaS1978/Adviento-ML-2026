@@ -2,6 +2,13 @@
 ### 24 días para descubrir y aprender Machine Learning
 
 **Un recorrido interactivo por el mundo del Machine Learning, desde los fundamentos hasta el desarrollo y evaluación de modelos predictivos.**
+## 🖼️ Vista previa de la aplicación
+
+### Pantalla principal
+![Pantalla principal de Adviento ML 2026](adv1.jpg)
+
+### Calendario interactivo de desafíos
+![Calendario de Adviento con los 24 días](adv2.jpg)
 
 🌐 **Aplicación online:** [Probar Adviento ML 2026](https://advientoml2026.netlify.app/)
 
@@ -117,6 +124,14 @@ Consultá el código fuente del proyecto:
 ### 24 Days to Discover and Learn Machine Learning
 
 **An interactive learning journey through Machine Learning, from fundamental concepts to building and evaluating predictive models.**
+
+## 🖼️ Application Preview
+
+### Main Dashboard
+![ML Advent Calendar 2026 Main Screen](adv1.jpg)
+
+### Interactive Challenge Calendar
+![Interactive 24-Day Advent Calendar](adv2.jpg)
 
 🌐 **Live Application:** [Try ML Advent Calendar 2026](https://advientoml2026.netlify.app/)
 
